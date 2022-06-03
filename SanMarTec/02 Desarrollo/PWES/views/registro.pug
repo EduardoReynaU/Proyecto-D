@@ -6,16 +6,16 @@ head
   title Document
   link(rel='stylesheet' href='styles.css')
 .signupFrm
-  form.form(action='')
+  form.form(action="/registro" method="POST")
     h1.title Sign up
     .inputContainer
-      input.input(type='text' placeholder='a')
+      input.input(type='text' placeholder='a', name= 'correo')
       label.label(for='') Email
     .inputContainer
-      input.input(type='text' placeholder='a')
+      input.input(type='text' placeholder='a', name= 'nombre')
       label.label(for='') Username
     .inputContainer
-      input.input(type='text' placeholder='a')
+      input.input(type='text' placeholder='a', name= 'password')
       label.label(for='') Password
     .inputContainer
       input.input(type='text' placeholder='a')
