@@ -25,8 +25,8 @@ app.get('/',(req, res)=>{
     res.render("index", {})
 })
 
-app.use('/', require('./router/inicioSesion'))
-app.use('/', require('./router/registro'))
+app.use('/login', require('./router/inicioSesion'))
+app.use('/registro', require('./router/registro'))
 
 
 
