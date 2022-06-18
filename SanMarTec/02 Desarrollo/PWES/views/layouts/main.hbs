@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    {{#if cssHome}}
+        <link rel="icon" type="image/png" href="assetsHome/images/favicon.png">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600&amp;display=swap" rel="stylesheet">
+        <link  rel="stylesheet" href="icofont.min.css">
+        <link href="assetsHome/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assetsHome/css/slick.css" rel="stylesheet">
+        <link href="assetsHome/css/main.css" rel="stylesheet">
+        {{/if}}
+        
+
+        {{#if cssLogin}}
+        <link rel="shortcut icon" href="assets/images/fav.jpg">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/fontawsom-all.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        {{/if}}
+        
+        {{#if cssReg}}
+        <link rel="shortcut icon" href="assetsReg/images/fav.jpg">
+        <link rel="stylesheet" href="assetsReg/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assetsReg/css/fontawsom-all.min.css">
+        <link rel="stylesheet" type="text/css" href="assetsReg/css/style.css">
+        {{/if}}
+        <link rel="stylesheet" href="/css/alertas.css" >
+    <title>{{NombrePagina}}</title>
+</head>
+<body>
+    
+    
+
+    {{#if menu}}
+
+        {{>navigation}}
+    {{/if}}
+    <main class="container p-0">
+    {{#if mensajes}}
+        {{>alertas}}
+    {{/if}}
+
+    {{#if error}}
+        {{>errors}}
+    {{/if}}
+    
+      
+        {{{body}}}
+    </main>
+   
+    <!-- Scritps -->    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    </body>
+</html>
