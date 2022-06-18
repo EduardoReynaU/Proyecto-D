@@ -1,6 +1,6 @@
 const express = require('express')
 const rutaRegistro = express.Router();
-const { verificarCorreo } = require('../helpers/BDvalidation');
+//const { verificarCorreo } = require('../helpers/BDvalidation');
 const {check } = require('express-validator')
 const {crearCuenta, crearUsuario} = require('../controllers/registro');
 const validarCampos = require('../middleware/validarCampos');

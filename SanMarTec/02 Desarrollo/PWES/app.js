@@ -34,7 +34,7 @@ app.engine('.hbs', create({
   defaultLayout: 'main',
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
-  helpers: require('../PWES/helpers/handlebars'),
+  helpers: path.join(__dirname, '/helpers/handlebars'),
   extname: '.hbs'
 }).engine )
 app.set('view engine', 'hbs')
@@ -43,9 +43,14 @@ app.set('view engine', 'hbs')
 
 
 //APP SESSION
-
+app.set('trust proxy', 1);
 app.use(
   session({
+    cookie:{
+      secure: true,
+      maxAge:60000
+         },
+  
     secret: 'secret',
     resave: true,
     saveUninitialized: true
