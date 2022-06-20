@@ -48,10 +48,6 @@ app.set('view engine', 'hbs')
 
 app.use(
   session({
-    cookie:{
-      secure: true,
-      maxAge:60000
-       },
   
     secret: 'secret',
     resave: true,
