@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const {create} = require('express-handlebars')
-const passport = require('./config/passport');
+const passport = require('passport');
 
 var session      = require('express-session');
 var flash        = require('req-flash');
@@ -10,15 +10,17 @@ require('dotenv').config()
 
 
 const app = express()
+require('./config/passport')
 const path = require('path')
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const Usuario = require('./models/usuario');
 const PORT = process.env.PORT || 3000;
 
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-app.use(bodyParser.json())
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 
 //Conexión Base de Datos
@@ -34,7 +36,7 @@ app.engine('.hbs', create({
   defaultLayout: 'main',
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
-  helpers: path.join(__dirname, '/helpers/handlebars'),
+  helpers: require('./helpers/handlebars'),
   extname: '.hbs'
 }).engine )
 app.set('view engine', 'hbs')
@@ -43,13 +45,13 @@ app.set('view engine', 'hbs')
 
 
 //APP SESSION
-app.set('trust proxy', 1);
+
 app.use(
   session({
     cookie:{
       secure: true,
       maxAge:60000
-         },
+       },
   
     secret: 'secret',
     resave: true,
@@ -65,8 +67,10 @@ app.use((req, res, next)=> {
   res.locals.errores= req.flash('errores');
   res.locals.mensajes = req.flash('mensaje');
   res.locals.error = req.flash("error");
-  //res.locals.user = req.user || null;
   
+  res.locals.user = req.user || null;
+  
+
   next();
 
 })
@@ -75,13 +79,27 @@ app.use((req, res, next)=> {
 app.use('/login', require('./router/inicioSesion'))
 app.use('/registro', require('./router/registro'))
 app.get('/',(req, res)=>{
+  const name = null
+    if (req.user){
+      this.name = req.user.nombre
+      this.rol = req.user.rol      
+    }
+
+    if(this.rol == 'usuario'){
+      this.rol = null
+    }
+    
     res.render("index", {
       title: 'SanMarTec-Home',
       cssHome: true,
       menu: true,
-      user : req.user || null
+      user : req.user || null,
+      nombre : this.name,
+      rol: this.rol
+      //nombre : req.user.nombre|| null
     })
 })
+app.use('/nosotros', require('./router/nosotros.js'))
 app.use('/logout', require('./router/cerrarSesion'))
 
 app.use(express.static(__dirname + "/public"))
