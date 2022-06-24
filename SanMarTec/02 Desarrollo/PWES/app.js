@@ -63,8 +63,8 @@ app.use((req, res, next)=> {
   res.locals.errores= req.flash('errores');
   res.locals.mensajes = req.flash('mensaje');
   res.locals.error = req.flash("error");
-  
   res.locals.user = req.user || null;
+  
   
 
   next();
@@ -74,28 +74,8 @@ app.use((req, res, next)=> {
 //Rutas
 app.use('/login', require('./router/inicioSesion'))
 app.use('/registro', require('./router/registro'))
-app.get('/',(req, res)=>{
-  const name = null
-    if (req.user){
-      this.name = req.user.nombre
-      this.rol = req.user.rol      
-    }
-
-    if(this.rol == 'usuario'){
-      this.rol = null
-    }
-    
-    res.render("index", {
-      title: 'SanMarTec-Home',
-      cssHome: true,
-      menu: true,
-      user : req.user || null,
-      nombre : this.name,
-      rol: this.rol
-      //nombre : req.user.nombre|| null
-    })
-})
-app.use('/nosotros', require('./router/nosotros.js'))
+app.use('/', require('./router/index'))
+app.use('/nosotros', require('./router/nosotros'))
 app.use('/logout', require('./router/cerrarSesion'))
 
 app.use(express.static(__dirname + "/public"))
